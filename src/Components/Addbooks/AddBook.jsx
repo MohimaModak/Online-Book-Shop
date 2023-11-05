@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import Marquee from "react-fast-marquee";
 
@@ -22,10 +23,9 @@ const AddBook = () => {
     };
     console.log(addBooksInfo);
 
-    axios.post("http://localhost:5000/novel", data).then((data) => {
+    axios.post("http://localhost:2000/kids", addBooksInfo).then((data) => {
       console.log(data.data);
     });
-
   };
 
   return (
@@ -127,7 +127,7 @@ const AddBook = () => {
                     <span className="label-text text-white">Photo</span>
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     placeholder="photo"
                     name="photo"
                     className="input input-bordered "
@@ -140,7 +140,7 @@ const AddBook = () => {
                     <span className="label-text text-white">Quantity</span>
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     placeholder="quantity"
                     name="quantity"
                     className="input input-bordered "
@@ -152,7 +152,7 @@ const AddBook = () => {
                     <span className="label-text text-white">Author Name</span>
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     placeholder="author"
                     name="author"
                     className="input input-bordered "
@@ -168,10 +168,10 @@ const AddBook = () => {
                     name="category"
                     className="input input-bordered "
                   >
-                    <option value="To Kill a Mockingbird">History</option>
-                    <option value="Pride and Prejudice">Mystery</option>
-                    <option value="The Great Gatsby">Horror</option>
-                    <option value="Moby-Dick">Fantasy</option>
+                    <option value="History">History</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Fantasy">Fantasy</option>
                   </select>
                 </div>
 
@@ -180,7 +180,7 @@ const AddBook = () => {
                     <span className="label-text text-white">Description</span>
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     placeholder="description"
                     name="description"
                     className="input input-bordered "
@@ -192,7 +192,7 @@ const AddBook = () => {
                     <span className="label-text text-white">Rating</span>
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     placeholder="rating"
                     name="rating"
                     className="input input-bordered w-full"

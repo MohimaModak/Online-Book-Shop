@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Category.css";
+import { Link } from "react-router-dom";
 const Category = () => {
   const [category, setcategory] = useState([]);
 
@@ -42,9 +43,11 @@ const Category = () => {
                     <h1 className="text-center lg:text-4xl font">
                       {books.category}
                     </h1>
-                    <button className="border w-full mt-5 rounded-3xl p-2">
-                      {books.button}
-                    </button>
+                    <Link to={`/bookKids/${books.category}`}>
+                      <button className="border w-full mt-5 rounded-3xl p-2">
+                        {books.button}
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

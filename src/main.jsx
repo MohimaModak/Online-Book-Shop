@@ -10,6 +10,7 @@ import AddBook from "./Components/Addbooks/AddBook";
 import SignIn from "./Components/SignIn/SignIn";
 import Root from "./Components/Root/Root";
 import Category from "./Components/Category/Category";
+import BookKids from "./Components/BookKids/BookKids";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,12 @@ const router = createBrowserRouter([
       {
         path: "/category",
         element: <Category />,
-        // loader: () => fetch("http://localhost:2000/book"),
+      },
+      {
+        path: "/bookKids/:category",
+        element: <BookKids />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:2000/kids/${params.category}`),
       },
       {
         path: "/signin",
