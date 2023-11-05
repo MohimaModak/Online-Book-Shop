@@ -1,0 +1,41 @@
+.background {
+  background-color: rgba(181, 179, 179, 0.185);
+}
+.text {
+  text-shadow: black 0.5px -1px 4px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@600;700&family=Roboto+Slab:wght@600&family=Rubik:wght@700&display=swap");
+.font {
+  font-family: "Rubik", sans-serif;
+}
+
+.contact {
+  /* width: px; */
+  /* height: px; */
+  overflow: hidden;
+}
+.contact-body {
+  background-color: rgba(151, 152, 153, 0.144);
+  transition: 2s;
+}
+
+.contact:hover .contact-body {
+  right: 0;
+}
+
+.bgcolor {
+  background: linear-gradient(to bottom, lightgray, lightblue);
+  animation: changebackground 4s linear 2s infinite alternate;
+}
+
+@keyframes changebackground {
+  0% {
+    background: linear-gradient(to bottom, rgb(219, 255, 252), white);
+    background: linear-gradient(to top, white, rgb(211, 242, 252));
+  }
+}
+
+.fontcolor {
+  text-shadow: 0.2px 0.5px rgb(126, 125, 125);
+}

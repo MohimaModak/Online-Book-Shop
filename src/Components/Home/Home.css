@@ -1,0 +1,30 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Adjust the height to cover the desired portion */
+  background: rgba(
+    63,
+    63,
+    63,
+    0.568
+  ); /* Adjust the background color and opacity as needed */
+  z-index: 2;
+}
+.video {
+  width: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.background {
+  background-color: rgba(184, 178, 178, 0.158);
+  backdrop-filter: blur(5px);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@600;700&family=Roboto+Slab:wght@600&family=Rubik:wght@700&display=swap");
+
+.bannerfont {
+  font-family: "Poppins", sans-serif;
+}
