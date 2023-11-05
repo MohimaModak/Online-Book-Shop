@@ -21,6 +21,11 @@ const AddBook = () => {
       rating,
     };
     console.log(addBooksInfo);
+
+    axios.post("http://localhost:5000/novel", data).then((data) => {
+      console.log(data.data);
+    });
+
   };
 
   return (
