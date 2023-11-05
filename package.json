@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.14.16",
+    "@mui/material": "^5.14.16",
     "axios": "^1.6.0",
     "example-component": "^0.0.12",
     "localforage": "^1.10.0",
