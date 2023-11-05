@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
+  const handleSignup = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const photo = e.target.photo.value;
+    const password = e.target.password.value;
+    const userInfo = { name, email, photo, password };
+    console.log(userInfo);
+  };
+
   return (
     <div>
       <div className="relative  text-white ">
@@ -16,7 +26,7 @@ const Signup = () => {
             <div className="hero-content flex-col lg:flex-row-reverse">
               <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl back border">
                 <form
-                //   onSubmit={handleSignup}
+                  onSubmit={handleSignup}
                   className="card-body text-white font-semibold lg:grid grid-cols-2"
                 >
                   <div className="form-control ">
