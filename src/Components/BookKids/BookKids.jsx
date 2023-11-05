@@ -1,29 +1,41 @@
+import { Rating } from "@mui/material";
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import "./BookKids.css";
 
 const BookKids = () => {
   const bookKidsLoader = useLoaderData();
   console.log(bookKidsLoader);
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center bannerfont">
       <h1>{bookKidsLoader.length}</h1>
-      <div className="grid grid-cols-2 gap-5 m-16">
+      <div className="m-5">
         {bookKidsLoader.map((kids) => (
-          <div className="border">
-            <div className="flex justify-center items-center">
-              <img src={kids.photo} className="" />
+          <div className=" md:flex justify-center items-center shadow-2xl border m-5">
+            <div className="flex justify-center items-center ">
+              <img src={kids.photo} className="md:w-[600px] h-[300px]" />
             </div>
 
-            <div className="text-center">
-              <h1>{kids.name}</h1>
-              <h1>Quantity: {kids.quantity}</h1>
-              <h1>category: {kids.category}</h1>
-              <h1>Author Name: {kids.author}</h1>
-              <div>
-                <h1>{kids.rating}</h1>
-                <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+            <div className="flex  justify-center items-center text-center p-3 md:w-2/3 md:text-left pl-5 ">
+              <div className="">
+                <h1 className="font-bold md:text-4xl">{kids.name}</h1>
+                <h1 className="font-semibold">Quantity: {kids.quantity}</h1>
+                <h1 className="font-semibold">category: {kids.category}</h1>
+                <h1 className="font-semibold">Author Name: {kids.author}</h1>
+
+                <h1 className="font-medium">{kids.description}</h1>
+                <div className="font-semibold">
+                  <h1>Rating: {kids.rating}</h1>
+                  <Rating
+                    name="half-rating"
+                    defaultValue={2.5}
+                    precision={0.5}
+                  />
+                </div>
+                <div className="text-center border p-2 max-w-min bg-gray-100 rounded-md font-bold">
+                  <button>Details</button>
+                </div>
               </div>
-              <h1>{kids.description}</h1>
             </div>
           </div>
         ))}
