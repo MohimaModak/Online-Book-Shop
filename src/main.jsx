@@ -11,6 +11,7 @@ import SignIn from "./Components/SignIn/SignIn";
 import Root from "./Components/Root/Root";
 import Category from "./Components/Category/Category";
 import BookKids from "./Components/BookKids/BookKids";
+import Signup from "./Components/Singup/Signup";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
         element: <BookKids />,
         loader: ({ params }) =>
           fetch(`http://localhost:2000/kids/${params.category}`),
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
       {
         path: "/signin",

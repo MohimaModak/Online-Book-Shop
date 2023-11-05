@@ -8,12 +8,11 @@ const BookKids = () => {
   console.log(bookKidsLoader);
   return (
     <div className="flex justify-center items-center bannerfont">
-      <h1>{bookKidsLoader.length}</h1>
       <div className="m-5">
         {bookKidsLoader.map((kids) => (
-          <div className=" md:flex justify-center items-center shadow-2xl border m-5">
+          <div className=" md:flex justify-center items-center shadow-2xl border m-5 rounded-md">
             <div className="flex justify-center items-center ">
-              <img src={kids.photo} className="md:w-[600px] h-[300px]" />
+              <img src={kids.photo} className="md:w-[600px] h-[300px] rounded-l-md" />
             </div>
 
             <div className="flex  justify-center items-center text-center p-3 md:w-2/3 md:text-left pl-5 ">
