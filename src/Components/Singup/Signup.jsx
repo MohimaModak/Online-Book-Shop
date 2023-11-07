@@ -1,7 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import { AiOutlineGoogle } from "react-icons/ai";
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
+  const { creatUser, signInWithGoogle } = useContext(AuthContext);
+  // console.log(creatUser);
+
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  console.log(location);
+
   const handleSignup = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -10,6 +23,47 @@ const Signup = () => {
     const password = e.target.password.value;
     const userInfo = { name, email, photo, password };
     console.log(userInfo);
+
+    let condition =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/;
+
+    if (!condition.test(password)) {
+      Swal.fire("Password is invalid");
+    }
+
+    const emailCondition = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    if (!emailCondition.test(email)) {
+      Swal.fire("Email is invalid");
+    }
+
+    creatUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo
+        }).then(() => {
+          e.target.reset();
+          window.location.href = "/";
+          return Swal.fire("User Created Successfully");
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state ? location.state : "/");
+        Swal.fire("User Created Successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -76,6 +130,16 @@ const Signup = () => {
                   </div>
                   <div className="text-center form-control lg:col-span-2 mt-3">
                     <button className="input input-bordered">Sign up</button>
+                  </div>
+
+                  <div className="flex justify-center items-center text-center form-control lg:col-span-2 font-bold">
+                    Sign in with{" "}
+                    <span
+                      onClick={handleGoogle}
+                      className="text-2xl cursor-pointer text-white "
+                    >
+                      <AiOutlineGoogle></AiOutlineGoogle>
+                    </span>
                   </div>
 
                   <div className="text-center form-control lg:col-span-2 font-bold p-2">

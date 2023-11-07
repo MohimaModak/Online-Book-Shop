@@ -20,7 +20,7 @@
 
 .background {
   background-color: rgba(184, 178, 178, 0.158);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(9px);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@600;700&family=Roboto+Slab:wght@600&family=Rubik:wght@700&display=swap");

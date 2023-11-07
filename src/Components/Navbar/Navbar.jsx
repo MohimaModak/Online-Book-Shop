@@ -1,13 +1,31 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        console.log("Successfully logged out");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="bgcolor flex justify-around items-center shadow-2xl md:text-xl font-bold font ">
       <div className="flex gap-3 lg:gap-16 p-3 items-center text-white fontcolor">
         <div>
-          <img src="/src/assets/gallery/logo.png" alt="Logo" className="w-14 lg:w-24" />
+          <img
+            src="/src/assets/gallery/logo.png"
+            alt="Logo"
+            className="w-14 lg:w-24"
+          />
         </div>
         <div>
           <NavLink
@@ -51,16 +69,29 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="ml-2 text-white fontcolor">
-        <NavLink
-          to="/signin"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "underline" : ""
-          }
-        >
-          Sign-in
-        </NavLink>
-      </div>
+      {user ? (
+        <div className="flex justify-center items-center">
+          <h1 className="lowercase text-white fontcolor">{user.displayName}</h1>
+          <img src={user.photoURL} className="w-10 h-10 p-2 rounded-full" />
+          <div
+            onClick={handleLogOut}
+            className="px-3 py-1 m-10 text-white fontcolor"
+          >
+            <button>Sign Out</button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex ml-2 text-white fontcolor">
+          <NavLink
+            to="/signin"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "underline" : ""
+            }
+          >
+            Sign In
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 };

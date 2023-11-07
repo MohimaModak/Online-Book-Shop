@@ -1,6 +1,6 @@
 import { Rating } from "@mui/material";
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import "./BookKids.css";
 
 const BookKids = () => {
@@ -12,7 +12,10 @@ const BookKids = () => {
         {bookKidsLoader.map((kids) => (
           <div className=" md:flex justify-center items-center shadow-2xl border m-5 rounded-md">
             <div className="flex justify-center items-center ">
-              <img src={kids.photo} className="md:w-[600px] h-[300px] rounded-l-md" />
+              <img
+                src={kids.photo}
+                className="md:w-[600px] h-[300px] rounded-l-md"
+              />
             </div>
 
             <div className="flex  justify-center items-center text-center p-3 md:w-2/3 md:text-left pl-5 ">
@@ -31,9 +34,13 @@ const BookKids = () => {
                     precision={0.5}
                   />
                 </div>
-                <div className="text-center border p-2 max-w-min bg-gray-100 rounded-md font-bold">
-                  <button>Details</button>
-                </div>
+                
+                <Link to={`/details/${kids._id}`}>
+                  <div className="text-center border p-2 max-w-min bg-gray-100 rounded-md font-bold">
+                    <button>Details</button>
+                  </div>
+                </Link>
+                
               </div>
             </div>
           </div>

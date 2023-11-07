@@ -1,4 +1,5 @@
 import React from "react";
+import Marquee from "react-fast-marquee";
 
 const SectionTwo = () => {
   return (
@@ -74,6 +75,8 @@ const SectionTwo = () => {
         </div>
       </div>
     </div>
+
+    
   );
 };
 

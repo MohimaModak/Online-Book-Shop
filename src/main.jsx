@@ -12,11 +12,17 @@ import Root from "./Components/Root/Root";
 import Category from "./Components/Category/Category";
 import BookKids from "./Components/BookKids/BookKids";
 import Signup from "./Components/Singup/Signup";
+import AuthProvider from "./Components/AuthProvider/AuthProvider";
+import KidDetails from "./Components/KidDetails/KidDetails";
+import PrivateRouter from "./Components/PrivateRouter/PrivateRouter";
+import Read from "./Components/Read/Read";
+import ErrorPage from "./Components/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -25,19 +31,30 @@ const router = createBrowserRouter([
 
       {
         path: "/allbooks",
-        element: <AllBooks />,
+        element: (
+          <PrivateRouter>
+            <AllBooks />
+          </PrivateRouter>
+        ),
+        loader: () => fetch("http://localhost:2000/allbooks"),
       },
       {
         path: "/borrowedbooks",
-        element: <BorrowedBooks />,
-      },
-      {
-        path: "/borrowedbooks",
-        element: <BorrowedBooks />,
+        element: (
+          <PrivateRouter>
+            <BorrowedBooks />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/addbooks",
         element: <AddBook />,
+      },
+      {
+        path: "/read/:id",
+        element: <Read />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:2000/details/${params.id}`),
       },
       {
         path: "/category",
@@ -58,8 +75,10 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: "/signin",
-        element: <SignIn />,
+        path: "/details/:id",
+        element: <KidDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:2000/details/${params.id}`),
       },
     ],
   },
@@ -67,6 +86,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />{" "}
+    <AuthProvider>
+      <RouterProvider router={router} />{" "}
+    </AuthProvider>
   </React.StrictMode>
 );
