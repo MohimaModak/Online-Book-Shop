@@ -27,7 +27,7 @@ const AddBook = () => {
     axios
       .post(
         "https://eleveen-server-assignment.vercel.app/kids",
-        { withCredentials: true },
+
         addBooksInfo
       )
       .then((data) => {

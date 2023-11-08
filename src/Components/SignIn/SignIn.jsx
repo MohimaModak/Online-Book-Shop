@@ -5,9 +5,10 @@ import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { AiOutlineGoogle } from "react-icons/ai";
 
 const SignIn = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
   console.log(signInUser);
 
   const navigate = useNavigate();
@@ -41,12 +42,24 @@ const SignIn = () => {
         const logInKoraUser = result.user;
         console.log(logInKoraUser);
         // const user = { email };
-      
+
         Swal.fire("User successfully log-in");
         e.target.reset();
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => console.error(error));
+  };
+
+  const handleGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state ? location.state : "/");
+        Swal.fire("User Created Successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -92,6 +105,16 @@ const SignIn = () => {
                   </div>
                   <div className="text-center form-control lg:col-span-2 mt-3">
                     <button className="input input-bordered">Sign-In</button>
+                  </div>
+
+                  <div className="flex justify-center items-center text-center form-control lg:col-span-2 font-bold">
+                    Sign in with{" "}
+                    <span
+                      onClick={handleGoogle}
+                      className="text-2xl cursor-pointer text-white "
+                    >
+                      <AiOutlineGoogle></AiOutlineGoogle>
+                    </span>
                   </div>
 
                   <div className="text-center form-control lg:col-span-2 font-bold p-2">
