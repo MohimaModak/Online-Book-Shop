@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import logo from "../../assets/gallery/logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -21,11 +22,7 @@ const Navbar = () => {
     <div className="bgcolor flex justify-around items-center shadow-2xl md:text-xl font-bold font ">
       <div className="flex gap-3 lg:gap-16 p-3 items-center text-white fontcolor">
         <div>
-          <img
-            src="/src/assets/gallery/logo.png"
-            alt="Logo"
-            className="w-14 lg:w-24"
-          />
+          <img src={logo} alt="Logo" className="w-14 lg:w-24" />
         </div>
         <div>
           <NavLink
@@ -97,3 +94,9 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+
+// https://eleveen-assignment-project.web.app

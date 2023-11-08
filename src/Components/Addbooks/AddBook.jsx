@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import Marquee from "react-fast-marquee";
+import Swal from "sweetalert2";
 
 const AddBook = () => {
   const handleAddBooks = (e) => {
@@ -23,9 +24,20 @@ const AddBook = () => {
     };
     console.log(addBooksInfo);
 
-    axios.post("http://localhost:2000/kids", addBooksInfo).then((data) => {
-      console.log(data.data);
-    });
+    axios
+      .post(
+        "https://eleveen-server-assignment.vercel.app/kids",
+        { withCredentials: true },
+        addBooksInfo
+      )
+      .then((data) => {
+        console.log(data.data);
+        Swal.fire({
+          title: "Wow",
+          text: "Successfully added",
+          confirmButtonText: "Okay",
+        });
+      });
   };
 
   return (

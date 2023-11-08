@@ -17,6 +17,7 @@ import KidDetails from "./Components/KidDetails/KidDetails";
 import PrivateRouter from "./Components/PrivateRouter/PrivateRouter";
 import Read from "./Components/Read/Read";
 import ErrorPage from "./Components/ErrorPage/ErrorPage";
+import Update from "./Components/Update/Update";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,8 @@ const router = createBrowserRouter([
             <AllBooks />
           </PrivateRouter>
         ),
-        loader: () => fetch("http://localhost:2000/allbooks"),
+        loader: () =>
+          fetch("https://eleveen-server-assignment.vercel.app/allbooks"),
       },
       {
         path: "/borrowedbooks",
@@ -47,14 +49,32 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/update/:id",
+        element: (
+          <PrivateRouter>
+            <Update />
+          </PrivateRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://eleveen-server-assignment.vercel.app/bookupdate/${params.id}`
+          ),
+      },
+      {
         path: "/addbooks",
-        element: <AddBook />,
+        element: (
+          <PrivateRouter>
+            <AddBook />{" "}
+          </PrivateRouter>
+        ),
       },
       {
         path: "/read/:id",
         element: <Read />,
         loader: ({ params }) =>
-          fetch(`http://localhost:2000/details/${params.id}`),
+          fetch(
+            `https://eleveen-server-assignment.vercel.app/details/${params.id}`
+          ),
       },
       {
         path: "/category",
@@ -64,7 +84,9 @@ const router = createBrowserRouter([
         path: "/bookKids/:category",
         element: <BookKids />,
         loader: ({ params }) =>
-          fetch(`http://localhost:2000/kids/${params.category}`),
+          fetch(
+            `https://eleveen-server-assignment.vercel.app/kids/${params.category}`
+          ),
       },
       {
         path: "/signin",
@@ -76,9 +98,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <KidDetails />,
+        element: (
+          <PrivateRouter>
+            <KidDetails />{" "}
+          </PrivateRouter>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:2000/details/${params.id}`),
+          fetch(
+            `https://eleveen-server-assignment.vercel.app/details/${params.id}`
+          ),
       },
     ],
   },

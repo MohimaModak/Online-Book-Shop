@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
@@ -37,10 +38,13 @@ const SignIn = () => {
 
     signInUser(email, password)
       .then((result) => {
-        navigate(location?.state ? location.state : "/");
-        console.log(result.user);
-        e.target.reset();
+        const logInKoraUser = result.user;
+        console.log(logInKoraUser);
+        // const user = { email };
+      
         Swal.fire("User successfully log-in");
+        e.target.reset();
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => console.error(error));
   };

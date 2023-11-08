@@ -1,6 +1,6 @@
 import { Rating } from "@mui/material";
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const AllBooks = () => {
   const allBooks = useLoaderData();
@@ -41,6 +41,11 @@ const AllBooks = () => {
                     precision={0.5}
                   />
                 </div>
+                <Link to={`/update/${everybooks._id}`}>
+                  <div className="shadow-2xl p-2 bg-gray-200 rounded-full text-center font-bold">
+                    <button className="border ">Update</button>
+                  </div>
+                </Link>
               </div>
             </div>
           ))}

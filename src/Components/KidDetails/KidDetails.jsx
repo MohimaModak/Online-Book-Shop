@@ -22,13 +22,13 @@ const KidDetails = () => {
     const date = e.target.date.value;
     const borrowUserInfo = { email, name, date, ...detailsLoader };
     console.log(borrowUserInfo);
-    axios.post("http://localhost:2000/borrow", borrowUserInfo).then((data) => {
+    axios.post("https://eleveen-server-assignment.vercel.app/borrow", borrowUserInfo).then((data) => {
       console.log(data.data);
       setShowmodal(false);
     });
 
     axios
-      .post("http://localhost:2000/borrowProduct", {
+      .post("https://eleveen-server-assignment.vercel.app/borrowProduct", {
         email: user.email,
         date: borrowUserInfo.date,
         name: detailsLoader.name,

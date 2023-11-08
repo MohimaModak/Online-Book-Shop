@@ -42,7 +42,7 @@ const Signup = () => {
         console.log(result.user);
         updateProfile(result.user, {
           displayName: name,
-          photoURL: photo
+          photoURL: photo,
         }).then(() => {
           e.target.reset();
           window.location.href = "/";

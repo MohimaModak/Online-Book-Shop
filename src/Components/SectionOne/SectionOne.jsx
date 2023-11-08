@@ -30,13 +30,15 @@ const SectionOne = () => {
           />
         </div>
         <div className="md:w-2/3 font text-white">
-          <h1 className="text-xl md:text-5xl pt-2 fontcolor pl-6">Our Knowledge Box</h1>
+          <h1 className="text-xl md:text-5xl pt-2 fontcolor pl-6">
+            Our Library Site
+          </h1>
           <p className="p-5 md:pt-6 font-bold fontcolor">
-            Libraries play an essential role in local communities by providing
-            access to information and resources, supporting literacy and
-            education, promoting lifelong learning, and serving as a community
-            gathering space. So the importance of libraries can be experienced
-            by all community members.
+            What is a Special Library? Special libraries, sometimes referred to
+            as “information centers”, are libraries that provide specialized
+            information resources on a particular subject, serve a specialized
+            and limited clientele, and deliver specialized services to that
+            clientele.
           </p>
           {/* <button onClick={window.print}>Download</button> */}
         </div>
